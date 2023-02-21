@@ -4,7 +4,8 @@ import pymongo
 import redis
 import requests
 
-searchWordList = ['node']
+# 修改处，全局搜索相关书籍
+searchWordList = ['react']  
 
 # client = redis.StrictRedis()
 
@@ -19,8 +20,11 @@ def mongodbWrite(collectName, bookInfo):
 def sortWay(book):
     return book['bookInfo']['newRating']
 
-
-
+# 标题
+# 作者
+# 简介
+# 出版日
+# 评分 
 
 
 def getWXBooks(queryPath, searchWord):
@@ -65,4 +69,4 @@ def getWXBooks(queryPath, searchWord):
 if __name__ == '__main__':
     for i in searchWordList:
         books = getWXBooks('https://weread.qq.com/web/search/global', i)
-         z(i, books)
+        mongodbWrite(i, books)
